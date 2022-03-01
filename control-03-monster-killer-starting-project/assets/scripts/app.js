@@ -1,4 +1,5 @@
 let healChecker = 0;
+let bonusLife = true;
 defaultSet();
 function defaultSet() {
   let userLifeSet = +prompt("Set level for both sides life!");
@@ -10,6 +11,8 @@ function defaultSet() {
   monsterHealthBar.value = userLifeSet;
   playerHealthBar.max = userLifeSet;
   playerHealthBar.value = userLifeSet;
+  healChecker = 0;
+  bonusLife = true;
 }
 function resetGame() {
   defaultSet();
@@ -38,7 +41,13 @@ function moveMaker(moveType) {
   checkGameOver();
 }
 function monsterAttack() {
-  const monsterPower = Math.round(Math.random() * 12);
+  const monsterPower = Math.round(Math.random() * 15);
+  if (playerHealthBar.value < monsterPower && bonusLife) {
+    alert("You'd be dead, but bonus life saves you.Be very careful now");
+    //bonusLifeEl.parentElement.removeChild(bonusLifeEl);
+    bonusLife = false;
+    return;
+  }
   playerHealthBar.value -= monsterPower;
 }
 function attackBtnHandler() {
@@ -64,7 +73,9 @@ function healBtnHandler() {
   monsterAttack();
   checkGameOver();
 }
-function logBtnHandler() {}
+function bonusLogic() {
+  playerHealthBar.value;
+}
 attackBtn.addEventListener("click", attackBtnHandler);
 strongAttackBtn.addEventListener("click", strongAttackBtnHandler);
 healBtn.addEventListener("click", healBtnHandler);
