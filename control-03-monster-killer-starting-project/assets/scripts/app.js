@@ -152,7 +152,7 @@ function logLogic(event, value, playerHealth, monsterHealth) {
   logEntries.push(moveCount);
 }
 function logBtnHandler() {
-  console.log(logEntries);
+  for (let i = 0; i < logEntries.length; i++) console.log(logEntries[i]);
 }
 attackBtn.addEventListener("click", attackBtnHandler);
 strongAttackBtn.addEventListener("click", strongAttackBtnHandler);
